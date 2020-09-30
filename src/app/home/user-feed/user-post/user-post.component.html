@@ -1,0 +1,17 @@
+<div class="user-post mb-4 py-2">
+    <div class="post-header pl-3">
+        <h3 class="username">
+            {{ post.username }}
+        </h3>
+        <div class="post-caption">
+            {{post.caption}}
+        </div>
+    </div>
+    <div class="post-image my-3 d-flex justify-content-center"> 
+        <img [src]="post.imageUrl" alt="{{ post.username }}" class="img-fluid">
+    </div>
+    <div class="post-footer pl-3">
+        <button type="button" class="mr-2 btn btn-primary">Like </button>
+        <button type="button" class="btn btn-secondary" (click)="viewPostDetails(post.id)">Comment</button>
+    </div>
+</div>

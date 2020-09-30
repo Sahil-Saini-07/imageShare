@@ -1,0 +1,32 @@
+<div class="row mt-4" id="postDetailContainer">
+    <div class="col-sm-6">
+        <div class="d-flex justify-content-center mb-3">
+            <img [src]="activePost.imageUrl" alt="{{ activePost.username }}" class="img-fluid">
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="post-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <h3>
+                    {{ activePost.username }}
+                </h3>
+                <button type="button" class="btn btn-outline-primary btn-sm" routerLink="./edit">Edit</button>
+            </div>
+            <div>{{ activePost.caption }}</div>
+        </div>
+        <hr>
+        <div class="comment-container list-group list-group-flush">
+            <app-comment *ngFor="let comment of activePost.comments" [comment]="comment"
+            class="list-group-item"></app-comment>
+        </div>
+        <div class="new-comment col-sm-12">
+            <form (ngSubmit)="onNewComment(commentForm)" #commentForm="ngForm" 
+            class="d-flex align-items-center">
+                <input type ="text" class="form-control mr-2"
+                name="text"
+                ngModel>
+                <button class="btn btn-secondary btn-sm" type="submit">Add</button>
+            </form>
+        </div>
+    </div>
+</div>

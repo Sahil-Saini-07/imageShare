@@ -1,0 +1,39 @@
+<form [formGroup]="addPostForm" (ngSubmit)="onPublish()">
+    <div class="row my-3">
+        <div class="col-sm-12">
+            <button type="submit" class="btn btn-success mr-2"
+            [disabled]="!addPostForm.valid">Publish</button>
+            
+            <button type="button" class="btn btn-danger"
+            (click)="onReset()">Reset</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label for="caption">Caption :</label>
+                <textarea id="captain" rows="3" class="form-control" 
+                [ngStyle]="{'resize' : 'none'}"
+                formControlName="caption">
+                </textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label for="imageUrl">Image Link :</label>
+                <input type="text" class="form-control" id="imageUrl" 
+                formControlName="imageUrl"
+                #image>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <img [src]="image.value" alt="" class="img-fluid">
+        </div>
+    </div>
+</form>
