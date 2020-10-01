@@ -7,11 +7,14 @@
             {{post.caption}}
         </div>
     </div>
-    <div class="post-image my-3 d-flex justify-content-center"> 
+    <div class="post-image mt-3 mb-1 d-flex justify-content-center"> 
         <img [src]="post.imageUrl" alt="{{ post.username }}" class="img-fluid">
     </div>
     <div class="post-footer pl-3">
-        <button type="button" class="mr-2 btn btn-primary">Like </button>
+        <div class="mb-2"><small>{{ post.likes }} people like this.</small></div>
+        <button type="button" class="mr-2 btn btn-primary" (click)="onAlterLike()">
+            {{ postLiked? 'Unlike':'Like' }}
+        </button>
         <button type="button" class="btn btn-secondary" (click)="viewPostDetails(post.id)">Comment</button>
     </div>
 </div>

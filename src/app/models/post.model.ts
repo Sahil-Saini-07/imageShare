@@ -1,4 +1,4 @@
-import { Comment } from '../post-detail/comment/comment.model';
+import { Comment } from './comment.model';
 
 export class Post {
     id:number;
@@ -6,6 +6,7 @@ export class Post {
     caption:string;
     imageUrl:string;
     likes?:number;
+    likedBy:string[];
     comments?:Comment[];
 
     constructor(id:number, name:string, caption:string, imageUrl:string) {
@@ -14,6 +15,7 @@ export class Post {
         this.caption = caption;
         this.imageUrl= imageUrl;
         this.likes = 0;
+        this.likedBy  = [];
         this.comments = [];
     }
 

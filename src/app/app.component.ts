@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DataStorageService } from './home/data-storage.service';
-import { Post } from './home/user-feed/post.model';
-import { UserPostService } from './home/user-post.service';
+import { DataStorageService } from './services/data-storage.service';
+import { Post } from './models/post.model';
+import { UserPostService } from './services/user-post.service';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.dataStorageService.fetchPosts().subscribe(
       (posts: Post[]) => {
-        this.userPostService.initializePosts(posts != null ? posts : []);``
+        this.userPostService.initializePosts(posts != null ? posts : []);
       }
     );
   }

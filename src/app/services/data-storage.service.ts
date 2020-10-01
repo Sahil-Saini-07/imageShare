@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
-import { Post } from './user-feed/post.model';
-import { tap, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+import { Post } from '../models/post.model';
 
 @Injectable({
     providedIn: 'root'
@@ -22,8 +22,12 @@ export class DataStorageService {
         return this.httpClient.get<Post[]>("https://imageshare-web-app.firebaseio.com/posts.json")
             .pipe(
                 map((response: any) => {
-                    return response.map((post: any) => {
-                        return new Post(post.id, post.username, post.caption, post.imageUrl);
+                    return response.map((object: any) => {
+                        let post = new Post(object.id, object.username, object.caption, object.imageUrl);
+                        post.likedBy = object.likedBy? object.likedBy : [];
+                        post.likes = object.likes? object.likes : 0;
+                        post.comments = object.comments? object.comments: [];
+                        return post;
                     })
                 })
             );

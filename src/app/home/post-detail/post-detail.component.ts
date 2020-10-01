@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UserPostService } from '../user-post.service';
-import { Post } from '../user-feed/post.model';
+import { UserPostService } from 'src/app/services/user-post.service';
+import { Post } from 'src/app//models/post.model';
 import { NgForm } from '@angular/forms';
-import { Comment } from './comment/comment.model';
+import { Comment } from 'src/app/models/comment.model';
 
 
 @Component({

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserPostService } from '../user-post.service';
-import { Post } from '../user-feed/post.model';
+import { UserPostService } from 'src/app/services/user-post.service';
+import { Post } from 'src/app/models/post.model';
 
 @Component({
   selector: 'app-edit-post',
@@ -13,6 +13,7 @@ export class EditPostComponent implements OnInit {
   editMode: boolean;
   addPostForm: FormGroup;
   activePostId: number;
+  activePost:Post;
 
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute, private userPostService: UserPostService) { }
@@ -27,9 +28,9 @@ export class EditPostComponent implements OnInit {
     let postCaption = "";
     let imageUrl = "";
     if (this.editMode) {
-      const post = this.userPostService.getPost(this.activePostId);
-      postCaption = post.caption;
-      imageUrl = post.imageUrl;
+      this.activePost = this.userPostService.getPost(this.activePostId);
+      postCaption = this.activePost.caption;
+      imageUrl = this.activePost.imageUrl;
     }
 
     this.addPostForm = new FormGroup({
@@ -41,9 +42,9 @@ export class EditPostComponent implements OnInit {
   onPublish() {
 
     if (this.editMode) {
-      const post = new Post(this.activePostId, "Sahil", this.addPostForm.value.caption,
-      this.addPostForm.value.imageUrl);
-      this.userPostService.updatePost(this.activePostId, post);
+      this.activePost.caption = this.addPostForm.value.caption;
+      this.activePost.imageUrl = this.addPostForm.value.imageUrl;
+      this.userPostService.updatePost(this.activePostId, this.activePost);
     }
     else {
       const post = new Post(this.userPostService.getNextIndex(), "Sahil", 
